@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>VK Five Friends</title>
+  <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: rgb(174,198,238);
+      background: radial-gradient(circle, rgba(174,198,238,0.6404762588629201) 58%, rgba(158,168,138,0.16148466222426472) 100%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container text-center" style="margin-top:5%;margin-left:auto;margin-right:auto">
+    {% if friends %}
+      <h2>Thanks for being logged in</h2>
+      <div class="row" style="margin-top:10%;margin-left:auto;margin-right:auto">
+        {% for friend in friends %}
+          <div class="card" style="margin-left:auto;margin-right:auto">
+            <div class="card-header"><a href="https://vk.com/id{{friend.id}}"><img src="{{friend.photo_100}}"></a></div>
+            <div class="card-footer">{{friend.first_name}} {{friend.last_name}}</div>
+          </div>
+        {% else %}
+          <p style="margin-top:5%">No friends here yet</p>
+        {% endfor %}
+        </div>
+        <div class="row"><a href="/vk/logout" class="btn btn-outline-primary" style="margin-left:auto;margin-right:auto;margin-top:10%">Log out</a></div>
+
+    {% else %}
+      <h2>Hello, proceed please</h2>
+      {% if msg %}
+        <p style="margin-top:5%">{{msg}}</p>
+      {% endif %}
+      <a href="/vk/login" class="btn btn-outline-primary" style="margin-top:10%">Log in</a>
+    {% endif %}
+  </div>
+</body>
+</html>
